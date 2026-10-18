@@ -73,8 +73,19 @@ async def collect(manifest: str | Path, out: str | Path, cfg: Config) -> int:
     robots: dict[str, RobotFileParser] = {}
     rows: list[dict] = []
 
-    with Path(manifest).open(encoding="utf-8") as fh:
-        entries = [json.loads(line) for line in fh if line.strip()]
+    manifest_path = Path(manifest)
+    raw_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if isinstance(raw_manifest, list):
+        entries = raw_manifest
+    elif isinstance(raw_manifest, dict) and "sources" in raw_manifest:
+        defaults = raw_manifest.get("defaults", {})
+        entries = []
+        for source in raw_manifest["sources"]:
+            license_name = source.get("license", defaults.get("license", "unknown"))
+            for url in source.get("urls", []):
+                entries.append({"url": url, "license": license_name, "title": source.get("name", "")})
+    else:
+        entries = [json.loads(line) for line in manifest_path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
     async with aiohttp.ClientSession(headers=headers, timeout=timeout) as session:
         async def one(entry: dict) -> dict | None:

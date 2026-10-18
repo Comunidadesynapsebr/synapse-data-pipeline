@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "description": "Manifesto de fontes autorizadas. Substitua/adicone entradas somente após verificar licença e termos de redistribuição.",
+  "defaults": {
+    "license": "REVIEW_REQUIRED",
+    "allowed_schemes": ["https"]
+  },
+  "sources": [
+    {
+      "name": "Wikipedia PT - semente de exemplo",
+      "license": "CC BY-SA 4.0",
+      "urls": [
+        "https://pt.wikipedia.org/wiki/Apache_Software_Foundation"
+      ],
+      "sitemap": null,
+      "notes": "Exemplo pequeno. Para escala, prefira dumps oficiais da Wikimedia e cumpra atribuição/share-alike."
+    }
+  ]
+}

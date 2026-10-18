@@ -49,6 +49,34 @@ Abra o [notebook para Google Colab](https://colab.research.google.com/github/Com
 
 Para livros, use apenas obras em domínio público ou com licença que permita redistribuição, e registre a licença por documento. Para grandes volumes, use fontes oficiais/arquivos licenciados em vez de scraping indiscriminado.
 
+## Manifesto grande e configuração
+
+O arquivo [`examples/manifest.json`](examples/manifest.json) é um catálogo estruturado de fontes. Para gerar um JSONL grande a partir de URLs ou sitemaps que você autorizou, edite esse arquivo e execute:
+
+```bash
+python scripts/build_manifest.py \
+  --input examples/manifest.json \
+  --out examples/manifest.generated.jsonl \
+  --max-urls 1000000 \
+  --allow-domain exemplo.org
+```
+
+O gerador não inventa URLs, exige licença confirmada, remove duplicatas e aplica allowlist de domínio. Sitemaps devem ser adicionados explicitamente no manifesto e pertencem a fontes que você está autorizado a processar.
+
+Para modificar as configurações sem editar YAML manualmente:
+
+```bash
+python scripts/update_config.py \
+  --config configs/config.yaml \
+  --dataset-name Comunidade-Synapse-BR/meu-dataset \
+  --output-format parquet \
+  --concurrency 8 \
+  --requests-per-second 2 \
+  --minhash-threshold 0.9
+```
+
+O token continua fora do arquivo: defina `HF_TOKEN` no ambiente ou nos Secrets do Colab.
+
 ## Segurança e governança
 
 - Nenhum token, cookie, dado bruto ou dataset é versionado.
