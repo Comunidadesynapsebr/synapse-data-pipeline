@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synapse-data-pipeline"
+version = "0.1.0"
+description = "Pipeline ético e reproduzível de coleta, limpeza, deduplicação e publicação de dados públicos."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+  "aiohttp>=3.9",
+  "beautifulsoup4>=4.12",
+  "datasketch>=1.6",
+  "ftfy>=6.2",
+  "huggingface_hub>=0.24",
+  "pandas>=2.0",
+  "pyarrow>=15.0",
+  "PyYAML>=6.0",
+  "selectolax>=0.3",
+  "tiktoken>=0.7",
+  "trafilatura>=1.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+synapse-pipeline = "synapse_pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

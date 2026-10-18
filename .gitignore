@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+
+# Dados e credenciais nunca entram no Git
+data/raw/*
+!data/raw/.gitkeep
+data/clean/*
+!data/clean/.gitkeep
+data/published/*
+!data/published/.gitkeep
+configs/config.yaml
+!configs/config.example.yaml

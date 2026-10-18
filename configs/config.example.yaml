@@ -1,0 +1,33 @@
+# Copie para configs/config.yaml. Este arquivo é ignorado pelo Git.
+project:
+  name: synapse-data-pipeline
+  dataset_name: Comunidade-Synapse-BR/dataset-publico
+  output_format: jsonl  # jsonl | parquet | csv | txt
+  language: pt
+  seed: 42
+
+collection:
+  user_agent: "SynapseDataPipeline/0.1 (+https://github.com/Comunidadesynapsebr/synapse-data-pipeline; contato: admin@example.org)"
+  concurrency: 8
+  requests_per_second: 2.0
+  timeout_seconds: 30
+  max_bytes_per_document: 50000000
+  respect_robots_txt: true
+  allowed_schemes: [https]
+  allowed_domains: []  # vazio = qualquer domínio permitido, sempre sujeito a robots/licença
+  blocked_domains: []
+
+cleaning:
+  min_chars: 200
+  max_chars: 2000000
+  remove_html: true
+  normalize_unicode: true
+  remove_boilerplate: true
+  deduplication: exact_and_minhash
+  minhash_threshold: 0.9
+
+publishing:
+  hf_token_env: HF_TOKEN
+  private: false
+  revision: main
+  commit_message: "Atualiza dataset processado"
