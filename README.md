@@ -43,6 +43,10 @@ python -m synapse_pipeline.cli validate --input data/clean/dataset.jsonl --confi
 python -m synapse_pipeline.cli publish --input data/clean/dataset.jsonl --config configs/config.yaml
 ```
 
+## Google Colab
+
+Abra o [notebook para Google Colab](https://colab.research.google.com/github/Comunidadesynapsebr/synapse-data-pipeline/blob/main/notebooks/synapse_pipeline_colab.ipynb). Ele clona este repositório, recebe o manifesto por upload, lê `HF_TOKEN` exclusivamente dos Secrets do Colab e executa coleta, limpeza, validação e publicação opcional.
+
 Para livros, use apenas obras em domínio público ou com licença que permita redistribuição, e registre a licença por documento. Para grandes volumes, use fontes oficiais/arquivos licenciados em vez de scraping indiscriminado.
 
 ## Segurança e governança
